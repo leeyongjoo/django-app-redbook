@@ -1,12 +1,12 @@
 from pathlib import Path
-from secrets import load_secrets, get_secret
+from secrets_loader import load_secrets, get_secret
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRETS = load_secrets(BASE_DIR)
-SECRET_KEY = get_secret(SECRETS, 'SECRET_KEY')
+LOADED_SECRETS = load_secrets(BASE_DIR)
+SECRET_KEY = get_secret(LOADED_SECRETS, 'SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'polls.apps.PollsConfig'
 ]
 
 MIDDLEWARE = [
